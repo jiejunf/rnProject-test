@@ -28,6 +28,8 @@ jobs:
         run: cd ios; pod install
       - name: Check iOS project directory before build
         run: ls -l ios
+      - name: Reinstall fastlane
+        run: gem uninstall fastlane; gem install fastlane -v 2.204
       - name: Build iOS Action
         uses: sparkfabrik/ios-build-action@v1.2.0
         with:
