@@ -28,8 +28,6 @@ jobs:
         run: cd ios; pod install
       - name: Check iOS project directory before build
         run: ls -l ios
-      - name: install fastlane
-        run: gem install fastlane -v 2.204 -NV
       - name: Build iOS Action
         uses: sparkfabrik/ios-build-action@v1.2.0
         with:
@@ -39,6 +37,8 @@ jobs:
           code-signing-identity: ${{ secrets.CODE_SIGNING_IDENTITY }} # Required For example, "iPhone Distribution", "Apple Development"
           team-id: ${{ secrets.TEAM_ID }} # Required Team id.
           workspace-path: ios/rnProject.xcworkspace # optional
+          update-targets: |
+            rnProject
       #          build-pods: true
       #          pods-path: project/ios/Podfile
       - name: Check project directory after build
